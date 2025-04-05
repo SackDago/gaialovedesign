@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="48" fill="#f8f7f4" />
+  
+  <!-- Outer leaf shape with extended spiral -->
+  <path d="M50,10 C70,10 90,30 90,50 C90,70 70,90 50,90 C40,90 25,80 25,65 C25,50 40,40 50,40 C60,40 70,50 70,60 C70,68 64,72 60,72 C56,72 52,68 52,64 C52,60 56,58 58,58 C59,58 60,59 60,60 C60,61 59,62 58,62 C57,62 56,61 56,60 C56,59 57,58 58,58" 
+        fill="none" stroke="#a3b18a" stroke-width="4" stroke-linecap="round" />
+</svg>

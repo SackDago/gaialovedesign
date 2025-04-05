@@ -1,0 +1,231 @@
+<!-- Navegación -->
+<nav class="navbar" [ngClass]="{'scrolled': isScrolled}">
+  <div class="container">
+      <a href="#" class="logo">Gaia <span class="small-text">Love Design</span></a>
+      <ul class="nav-links" [ngClass]="{'active': isMenuActive}">
+          <li><a href="#inicio" (click)="scrollToSection('inicio')">Inicio</a></li>
+          <li><a href="#sobre-nosotros" (click)="scrollToSection('sobre-nosotros')">Sobre Nosotros</a></li>
+          <li><a href="#servicios" (click)="scrollToSection('servicios')">Servicios</a></li>
+          <li><a href="#proyectos" (click)="scrollToSection('proyectos')">Proyectos</a></li>
+          <li><a href="#manifiesto" (click)="scrollToSection('manifiesto')">Manifiesto</a></li>
+          <li><a href="#testimonios" (click)="scrollToSection('testimonios')">Testimonios</a></li>
+          <li><a href="#blog" (click)="scrollToSection('blog')">Blog</a></li>
+          <li><a href="#contacto" (click)="scrollToSection('contacto')">Contacto</a></li>
+      </ul>
+      <div class="hamburger" [ngClass]="{'active': isMenuActive}" (click)="toggleMenu()">
+          <span></span>
+          <span></span>
+          <span></span>
+      </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero" id="inicio">
+  <div class="container">
+      <div class="hero-content">
+          <h1>Gaia</h1>
+          <h2>La Madre de Todas las Creaciones</h2>
+          <p>Diseñamos interiores que transforman la energía de tu hogar, conectando la belleza con tu esencia interior.</p>
+          <a href="#contacto" class="btn" (click)="scrollToSection('contacto')">Consulta gratuita</a>
+      </div>
+  </div>
+</section>
+
+<!-- About Section -->
+<section class="about" id="sobre-nosotros">
+  <div class="about-img"></div>
+  <div class="about-content">
+      <h2>Sobre Gaia Designs</h2>
+      <p>Somos un estudio de diseño de interiores que nace desde la consciencia y la conexión con el ser. Creemos que los espacios que habitamos son un reflejo de nuestra alma y tienen el poder de transformar nuestra energía.</p>
+      <p>En Gaia Designs, cada proyecto es un viaje único donde escuchamos profundamente tus necesidades, entendemos tu esencia y la traducimos en espacios que no solo son bellos, sino que respiran armonía, equilibrio y autenticidad.</p>
+      <p>Nuestra filosofía se basa en crear ambientes que honren la naturaleza, la luz, las texturas orgánicas y los materiales nobles, siempre desde una perspectiva consciente y respetuosa con el planeta.</p>
+      <div class="signature">Con amor, el equipo de Gaia</div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="servicios">
+  <div class="container">
+      <div class="section-header">
+          <h2>Nuestros Servicios</h2>
+          <p>Ofrecemos soluciones de diseño que integran belleza, funcionalidad y consciencia para transformar tus espacios en lugares que nutren el alma.</p>
+      </div>
+      <div class="services-grid">
+          <div class="service-item" *ngFor="let service of services">
+              <div class="service-icon">
+                  <i [class]="service.icon"></i>
+              </div>
+              <h3>{{ service.title }}</h3>
+              <p>{{ service.description }}</p>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Portfolio Section -->
+<section class="portfolio" id="proyectos">
+  <div class="container">
+      <div class="section-header">
+          <h2>Proyectos con Alma</h2>
+          <p>Cada espacio que diseñamos cuenta una historia única que conecta con la esencia de quien lo habita.</p>
+      </div>
+      <div class="portfolio-grid">
+          <div class="portfolio-item" *ngFor="let project of projects">
+              <img [src]="project.image" [alt]="project.title" class="portfolio-img">
+              <div class="portfolio-overlay">
+                  <h3>{{ project.title }}</h3>
+                  <p>{{ project.description }}</p>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Manifesto Section -->
+<section class="manifesto" id="manifiesto">
+  <div class="container">
+      <h2>Nuestro Manifiesto</h2>
+      <p>Creemos que los espacios que habitamos moldean nuestra consciencia y nuestro ser. El diseño no es solo estética, es una herramienta de transformación profunda.</p>
+      <p>Nos comprometemos a crear desde la autenticidad, honrando la sabiduría de la naturaleza y el poder sanador de los espacios conscientes.</p>
+      <p>Cada línea, textura, color y objeto que elegimos tiene una intención: conectarte con tu esencia y elevar tu vibración energética.</p>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials" id="testimonios">
+  <div class="container">
+      <div class="section-header">
+          <h2>Voces del Corazón</h2>
+          <p>Lo que nuestros clientes dicen sobre la experiencia de transformar sus espacios con Gaia Designs.</p>
+      </div>
+      <div class="testimonial-grid">
+          <div class="testimonial-item" *ngFor="let testimonial of testimonials">
+              <div class="testimonial-text">
+                  <p>{{ testimonial.text }}</p>
+              </div>
+              <div class="client-info">
+                  <img [src]="testimonial.image" [alt]="testimonial.name" class="client-img">
+                  <div>
+                      <div class="client-name">{{ testimonial.name }}</div>
+                      <div class="client-role">{{ testimonial.role }}</div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Blog Section -->
+<section class="blog" id="blog">
+  <div class="container">
+      <div class="section-header">
+          <h2>Inspiración Consciente</h2>
+          <p>Exploramos el diseño como herramienta de transformación personal y colectiva.</p>
+      </div>
+      <div class="blog-grid">
+          <div class="blog-item" *ngFor="let post of blogPosts">
+              <img [src]="post.image" [alt]="post.title" class="blog-img">
+              <div class="blog-content">
+                  <span class="blog-date">{{ post.date }}</span>
+                  <h3>{{ post.title }}</h3>
+                  <p>{{ post.excerpt }}</p>
+                  <a href="#" class="btn">Leer más</a>
+              </div>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contacto">
+  <div class="container">
+      <div class="section-header">
+          <h2>Conéctate con Nosotros</h2>
+          <p>Estamos aquí para escucharte y acompañarte en el viaje de transformar tus espacios.</p>
+      </div>
+      <div class="contact-box">
+          <div class="contact-info">
+              <h3>Información de Contacto</h3>
+              <div class="contact-details">
+                  <p><span class="contact-icon"><i class="fas fa-map-marker-alt"></i></span> {{ contactInfo.address }}</p>
+                  <p><span class="contact-icon"><i class="fas fa-envelope"></i></span> {{ contactInfo.email }}</p>
+                  <p><span class="contact-icon"><i class="fas fa-phone"></i></span> {{ contactInfo.phone }}</p>
+                  <p><span class="contact-icon"><i class="fas fa-clock"></i></span> {{ contactInfo.hours }}</p>
+              </div>
+              <div class="social-links">
+                  <a href="#" *ngFor="let social of socialMedia">
+                      <i [class]="social.icon"></i>
+                  </a>
+              </div>
+          </div>
+          <div class="contact-form">
+              <h3>Envíanos un Mensaje</h3>
+              <form (ngSubmit)="onSubmit()" [formGroup]="contactForm">
+                  <div class="input-row">
+                      <div class="input-group">
+                          <label for="name">Nombre</label>
+                          <input type="text" id="name" placeholder="Tu nombre" formControlName="name">
+                      </div>
+                      <div class="input-group">
+                          <label for="email">Email</label>
+                          <input type="email" id="email" placeholder="Tu email" formControlName="email">
+                      </div>
+                  </div>
+                  <div class="input-row">
+                      <div class="input-group">
+                          <label for="phone">Teléfono</label>
+                          <input type="tel" id="phone" placeholder="Tu teléfono" formControlName="phone">
+                      </div>
+                      <div class="input-group">
+                          <label for="subject">Asunto</label>
+                          <input type="text" id="subject" placeholder="Asunto del mensaje" formControlName="subject">
+                      </div>
+                  </div>
+                  <div class="input-group">
+                      <label for="message">Mensaje</label>
+                      <textarea id="message" placeholder="Cuéntanos sobre tu proyecto o consulta" formControlName="message"></textarea>
+                  </div>
+                  <button type="submit" class="btn" [disabled]="contactForm.invalid">Enviar Mensaje</button>
+              </form>
+          </div>
+      </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer>
+  <div class="container">
+      <div class="footer-grid">
+          <div class="footer-about">
+              <div class="footer-logo">Gaia Designs</div>
+              <p>Creamos espacios con alma que transforman vidas, honrando la belleza, la naturaleza y el ser interior.</p>
+          </div>
+          <div>
+              <h4 class="footer-heading">Enlaces</h4>
+              <ul class="footer-links">
+                  <li *ngFor="let link of footerLinks.main">
+                      <a [href]="link.url" (click)="scrollToSection(link.id)">{{ link.name }}</a>
+                  </li>
+              </ul>
+          </div>
+          <div>
+              <h4 class="footer-heading">Servicios</h4>
+              <ul class="footer-links">
+                  <li *ngFor="let link of footerLinks.services">
+                      <a [href]="link.url">{{ link.name }}</a>
+                  </li>
+              </ul>
+          </div>
+          <div class="footer-subscribe">
+              <h4 class="footer-heading">Newsletter</h4>
+              <p>Suscríbete para recibir inspiración consciente en tu bandeja de entrada.</p>
+              <input type="email" placeholder="Tu email" [(ngModel)]="newsletterEmail">
+              <button type="submit" (click)="subscribeNewsletter()">Suscribirme</button>
+          </div>
+      </div>
+      <div class="footer-bottom">
+          <p>&copy; {{ currentYear }} Gaia Designs. Todos los derechos reservados. | Diseñado con consciencia y amor.</p>
+      </div>
+  </div>
+</footer>

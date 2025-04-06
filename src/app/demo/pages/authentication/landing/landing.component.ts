@@ -2,11 +2,13 @@ import { RouterModule } from '@angular/router';
 import { Component, OnInit, HostListener } from '@angular/core';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { EmailService } from '../../../../services/email.service';
 
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [RouterModule, CommonModule, ReactiveFormsModule, FormsModule],
+  imports: [RouterModule, CommonModule, ReactiveFormsModule, FormsModule, HttpClientModule],
   templateUrl: './landing.component.html',
   styleUrl: './landing.component.scss'
 })
@@ -17,6 +19,12 @@ export default class LandingComponent implements OnInit {
   currentYear = new Date().getFullYear();
   newsletterEmail = '';
   contactForm: FormGroup;
+  isSubmitting = false;
+  submissionError = '';
+  submissionSuccess = false;
+
+  // Email de destino para el formulario
+  private targetEmail = 'sackdago@gmail.com'; // Reemplazar con tu email real
 
   // Datos para las secciones dinámicas
   services = [
@@ -137,7 +145,10 @@ export default class LandingComponent implements OnInit {
     ]
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private emailService: EmailService
+  ) {
     this.contactForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
@@ -171,15 +182,40 @@ export default class LandingComponent implements OnInit {
 
   onSubmit() {
     if (this.contactForm.valid) {
-      console.log('Formulario enviado:', this.contactForm.value);
-      // Aquí iría la lógica para enviar el formulario a un backend
-      // Por ejemplo, usando un servicio de Angular para hacer una petición HTTP
+      this.isSubmitting = true;
+      this.submissionError = '';
+      this.submissionSuccess = false;
       
-      // Resetear el formulario después de enviar
-      this.contactForm.reset();
+      // Preparar los datos para enviar
+      const formData = {
+        ...this.contactForm.value,
+        toEmail: this.targetEmail // Añadir el email de destino
+      };
       
-      // Mostrar mensaje de éxito (esto podría ser reemplazado por un componente de alerta o toast)
-      alert('Mensaje enviado con éxito. Nos pondremos en contacto contigo pronto.');
+      // Enviar el email usando el servicio
+      this.emailService.sendEmail(formData).subscribe({
+        next: (response) => {
+          console.log('Email enviado con éxito:', response);
+          this.isSubmitting = false;
+          this.submissionSuccess = true;
+          this.contactForm.reset();
+          
+          // Mostrar mensaje de éxito (esto se podría reemplazar por una notificación más elegante)
+          setTimeout(() => {
+            this.submissionSuccess = false;
+          }, 5000); // Ocultar el mensaje después de 5 segundos
+        },
+        error: (error) => {
+          console.error('Error al enviar el email:', error);
+          this.isSubmitting = false;
+          this.submissionError = 'Hubo un problema al enviar tu mensaje. Por favor, inténtalo de nuevo o contáctanos directamente por teléfono.';
+          
+          // Ocultar el mensaje de error después de un tiempo
+          setTimeout(() => {
+            this.submissionError = '';
+          }, 5000);
+        }
+      });
     } else {
       // Marcar todos los campos como tocados para mostrar los errores
       Object.keys(this.contactForm.controls).forEach(key => {

@@ -54,22 +54,22 @@ export default class LandingComponent implements OnInit {
     {
       image: '/assets/images/project1.jpg',
       title: 'Casa Serenidad',
-      description: 'Un hogar que abraza la luz natural y las texturas orgánicas para crear un refugio de paz.'
+      description: 'Hogares que abrazan la luz natural y las texturas orgánicas para crear un refugio de paz.'
     },
     {
       image: '/assets/images/project2.jpg',
       title: 'Estudio Creativo',
-      description: 'Un espacio de trabajo que inspira la creatividad a través de elementos naturales y luz abundante.'
+      description: 'Espacios de trabajo que inspiran la creatividad a través de elementos naturales y luz abundante.'
     },
     {
       image: '/assets/images/project3.jpg',
       title: 'Café Tierra',
-      description: 'Un local comercial que invita a la conexión y la pausa consciente en medio de la ciudad.'
+      description: 'Locales comerciales que invitan a la conexión y la pausa consciente en medio de la ciudad.'
     },
     {
       image: '/assets/images/project4.jpg',
       title: 'Refugio Montaña',
-      description: 'Una casa de montaña que dialoga con el paisaje y honra los materiales autóctonos.'
+      description: 'Casas de montaña que dialogan con el paisaje y honran los materiales autóctonos.'
     }
   ];
 

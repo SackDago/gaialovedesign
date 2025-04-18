@@ -11,6 +11,7 @@
           <li><a href="#testimonios" (click)="scrollToSection('testimonios')">Testimonios</a></li>
           <li><a href="#blog" (click)="scrollToSection('blog')">Blog</a></li>
           <li><a href="#contacto" (click)="scrollToSection('contacto')">Contacto</a></li>
+          <li><a [routerLink]="['/auth/signin']">Login</a></li>
       </ul>
       <div class="hamburger" [ngClass]="{'active': isMenuActive}" (click)="toggleMenu()">
           <span></span>

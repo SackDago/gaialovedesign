@@ -1,5 +1,6 @@
+
 import { Component } from '@angular/core';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-auth-signin',
@@ -8,4 +9,12 @@ import { RouterModule } from '@angular/router';
   templateUrl: './auth-signin.component.html',
   styleUrls: ['./auth-signin.component.scss']
 })
-export default class AuthSigninComponent {}
+export default class AuthSigninComponent {
+
+constructor(private router: Router){}
+
+login(){
+  this.router.navigate(['platform/dashboard']);
+}
+
+}
